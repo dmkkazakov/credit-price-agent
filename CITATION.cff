@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this repository, please cite the accompanying working paper."
+title: "CreditPrice Agent: State-Dependent Corporate Loan Pricing"
+authors:
+  - family-names: "Kazakov"
+    given-names: "Dmitry"
+version: 0.1.0
+date-released: 2026-09-04
+license: MIT
