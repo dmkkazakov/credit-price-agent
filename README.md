@@ -7,6 +7,8 @@ A pricing desk has a nastier question: *given the borrower, the relationship, to
 
 Those are not the same question. A bank can love a client and still dislike one more five-year asset in exactly the wrong sector. Balance sheets are sentimental only in PowerPoint.
 
+https://github.com/dmkkazakov/credit-price-agent
+
 ## What this repository does
 
 `CreditPrice Agent` is a reproducible research prototype for individualized corporate-loan pricing. It combines borrower risk (`PD`, `LGD`), relationship history, estimated price acceptance, market funding, and capital/liquidity/concentration pressure.
