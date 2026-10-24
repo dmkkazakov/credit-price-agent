@@ -7,7 +7,7 @@ CreditPrice Agent: State-Dependent Corporate Loan Pricing under Borrower Risk, R
 Dmitry Kazakov — Independent Researcher
 
 **Abstract**  
-Loan pricing is often modeled as a borrower-level problem: estimate credit risk, add funding and capital costs, and choose a margin. This paper studies a different formulation. The economically relevant price of a corporate loan depends not only on the borrower but also on the lender's contemporaneous state. We introduce CreditPrice Agent, a transparent research framework in which the pricing policy conditions jointly on borrower risk, relationship history, price acceptance, market funding, and dynamic balance-sheet pressure. A structural synthetic data-generating process makes the counterfactual pricing problem observable and reproducible without using confidential bank data. In a reference simulation of 30,000 applications, the state-dependent policy changes quoted prices relative to a risk-and-demand-only optimizer and increases simulated total economic value by -1.4% under the known data-generating process. Relative to the historical synthetic policy, the improvement is -109.7%. These figures are simulation results, not empirical claims about any institution. The main contribution is conceptual and operational: corporate loan pricing is represented as a borrower-relationship-bank-state decision rather than a static markup over expected loss.
+Loan pricing is often modeled as a borrower-level problem: estimate credit risk, add funding and capital costs, and choose a margin. This paper studies a different formulation. The economically relevant price of a corporate loan depends not only on the borrower but also on the lender's contemporaneous state. We introduce CreditPrice Agent, a transparent research framework in which the pricing policy conditions jointly on borrower risk, relationship history, price acceptance, market funding, and dynamic balance-sheet pressure. A structural synthetic data-generating process makes the counterfactual pricing problem observable and reproducible without using confidential bank data. In a reference simulation of 30,000 applications, the state-dependent policy changes quoted prices relative to a risk-and-demand-only optimizer and increases simulated total economic value by 7.9% relative to the risk-and-demand-only optimizer under the known data-generating process. Relative to the historical synthetic policy, the simulated EV improvement is 70.3%. These figures are simulation results, not empirical claims about any institution. The main contribution is conceptual and operational: corporate loan pricing is represented as a borrower-relationship-bank-state decision rather than a static markup over expected loss.
 
 **Keywords**  
 Corporate lending; loan pricing; risk-based pricing; price elasticity; balance-sheet optimization; machine learning; decision systems
@@ -21,7 +21,9 @@ G21; G32; C61; C63
 - Results are reproducible from the repository with `seed=42`.
 - Do not describe the simulation results as evidence about a real bank.
 - The paper should be presented as a working paper / research prototype.
-- Before public upload, add the final public GitHub repository URL to the manuscript and CITATION.cff.
+- Public source repository: https://github.com/dmkkazakov/credit-price-agent.
+- Public paper record: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7427102.
+- The committed numerical artifacts support the seed=42 reference run only. Do not infer a multi-seed robustness study from this package.
 - Verify any employer/affiliation and conflict-of-interest wording before submission.
 
 ## Suggested SSRN description
@@ -32,3 +34,11 @@ This working paper introduces a reproducible framework for state-dependent corpo
 
 Reference run: n=30000, seed=42, PD AUC=0.828,
 agent vs risk/demand-only EV=+7.9%.
+
+## Publication correction on 24 October 2026
+
+The abstract in this submission-notes file previously retained obsolete values
+(-1.4% and -109.7%) that disagreed with the manuscript and the saved metrics.
+It is now copied from `paper/manuscript.md`: +7.9% versus the risk-and-demand
+optimizer and +70.3% versus the deliberately imperfect historical synthetic
+policy. This correction does not change the reference data or the computation.

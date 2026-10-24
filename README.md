@@ -35,11 +35,24 @@ Reference run (`seed=42`, 30,000 applications):
 - Historical mean quoted rate: **16.10%**
 - Risk/demand-only optimized rate: **16.60%**
 - State-dependent agent mean rate: **17.60%**
-- Agent EV vs historical synthetic policy: **+70.3%**
 - Agent EV vs risk/demand-only policy: **+7.9%**
+- Agent EV vs historical synthetic policy: **+70.3%**
 - No-offer share: **0.0%** for the agent vs **0.0%** for the risk/demand-only policy
 
 These are **simulation results**, not claims about a real bank. The DGP is visible in `src/credit_price_agent/simulation.py`, so the reader can inspect exactly where the rabbit entered the hat.
+
+The **+7.9%** comparison is the primary measure of the added bank-state terms:
+the comparator already optimizes for borrower risk and estimated demand. The
+**+70.3%** comparison uses the deliberately imperfect historical synthetic
+policy and should not be presented as the incremental value of bank-state
+modeling alone. Both percentages are derived from the same reference run in
+[`results/metrics.json`](results/metrics.json).
+
+Publication text is in [`paper/manuscript.md`](paper/manuscript.md), with matching
+submission fields in [`paper/SSRN_SUBMISSION_NOTES.md`](paper/SSRN_SUBMISSION_NOTES.md).
+The committed artifacts document a single `seed=42` run; they do not reproduce a
+multi-seed robustness study. The public paper record is
+[SSRN 7427102](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7427102).
 
 ## Economic objective
 
