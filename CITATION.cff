@@ -4,6 +4,11 @@ title: "CreditPrice Agent: State-Dependent Corporate Loan Pricing"
 authors:
   - family-names: "Kazakov"
     given-names: "Dmitry"
-version: 0.1.0
-date-released: 2026-09-04
+    affiliation: "NEIMARK University, Nizhny Novgorod, Russia"
+    orcid: "https://orcid.org/0009-0002-6670-3705"
+version: 0.3.1
+date-released: 2026-10-30
 license: MIT
+
+repository-code: "https://github.com/dmkkazakov/credit-price-agent"
+url: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7427102"

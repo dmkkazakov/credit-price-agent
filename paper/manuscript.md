@@ -1,12 +1,12 @@
 # CreditPrice Agent: State-Dependent Corporate Loan Pricing under Borrower Risk, Relationship History, and Dynamic Balance-Sheet Constraints
 
 **Dmitry Kazakov**  
-Independent Researcher  
-September 2026
+NEIMARK University, Nizhny Novgorod, Russia  
+September 2026; revised 30 October 2026
 
 ## Abstract
 
-Loan pricing is often modeled as a borrower-level problem: estimate credit risk, add funding and capital costs, and choose a margin. This paper studies a different formulation. The economically relevant price of a corporate loan depends not only on the borrower but also on the lender's contemporaneous state. We introduce CreditPrice Agent, a transparent research framework in which the pricing policy conditions jointly on borrower risk, relationship history, price acceptance, market funding, and dynamic balance-sheet pressure. A structural synthetic data-generating process makes the counterfactual pricing problem observable and reproducible without using confidential bank data. In a reference simulation of 30,000 applications, the state-dependent policy changes quoted prices relative to a risk-and-demand-only optimizer and increases simulated total economic value by 7.9% relative to the risk-and-demand-only optimizer under the known data-generating process. Relative to the historical synthetic policy, the simulated EV improvement is 70.3%. These figures are simulation results, not empirical claims about any institution. The main contribution is conceptual and operational: corporate loan pricing is represented as a borrower-relationship-bank-state decision rather than a static markup over expected loss.
+We study individualized corporate-loan pricing when the lender's own balance sheet is part of the decision state. The pricing policy conditions jointly on borrower fundamentals, relationship history, estimated price response, market funding and capital, liquidity and sector-concentration pressure. A transparent implementation separates risk estimation, demand estimation and constrained price search. A fully disclosed synthetic data-generating process contains 30,000 applications over 60 monthly states per run. In the seed-42 out-of-time experiment, the PD model achieves ROC AUC 0.828. Using structural acceptance probabilities and a common estimated PD, the state-dependent policy raises simulated economic value by 7.9% relative to a risk-and-demand optimizer and by 70.3% relative to the historical synthetic policy. A new seed-sensitivity experiment using five prespecified seeds (42-46), with 30,000 applications per seed, yields a mean uplift of 11.3% (range 7.9%-14.4%) relative to the risk-and-demand-only optimizer. This checks random-seed sensitivity under the same synthetic DGP, not robustness to alternative economic assumptions. These are simulation results, not estimated gains at a real institution. The contribution is a reproducible formulation of pricing as a borrower-relationship-bank-state decision with explicit limits on what the experiment establishes.
 
 **Keywords:** corporate lending; loan pricing; risk-based pricing; price elasticity; balance-sheet optimization; machine learning; decision systems
 
@@ -73,19 +73,32 @@ The reference pipeline splits months 0-47 for training and months 48-59 for out-
 
 For each test application the optimizer searches a feasible rate grid from 6% to 30% in 25-basis-point increments. Candidate prices below market rate plus funding spread plus a minimum economic spread are rejected. Two optimized policies are compared.
 
-The first policy uses borrower risk and estimated price acceptance but ignores balance-sheet penalties. The second, CreditPrice Agent, adds capital, liquidity and sector-concentration state. Both are evaluated using the known structural acceptance function from the synthetic DGP, not the fitted acceptance model. This separation is important: policy construction may be imperfect, while evaluation should exploit the fact that the simulation gives us ground truth.
+The first policy uses borrower risk and estimated price acceptance but ignores balance-sheet penalties. The second, CreditPrice Agent, adds capital, liquidity and sector-concentration state. Both are evaluated using the structural acceptance function from the synthetic DGP. Expected loss retains the same estimated PD across policies and the synthetic LGD input. Thus evaluation separates fitted demand from structural demand, but does not provide fully structural counterfactual default outcomes. The no-offer action has zero acceptance and zero value; it must not be evaluated as a loan offered at a zero interest rate.
 
 ## 6. Results
 
 The historical synthetic policy quotes an average rate of 16.10%. The risk-and-demand-only optimizer quotes 16.60% on average, while the state-dependent policy quotes 17.60%.
 
-Under the known DGP, the state-dependent policy increases aggregate simulated economic value by 7.9% relative to the risk-and-demand-only policy. Relative to the historical synthetic policy, the improvement is 70.3%. Mean structural acceptance is 24.2% for the agent versus 52.2% under the historical synthetic policy.
+With structural acceptance and a common estimated PD, the state-dependent policy increases aggregate simulated economic value by 7.9% relative to the risk-and-demand-only policy. Relative to the historical synthetic policy, the improvement is 70.3%. Mean structural acceptance is 24.2% for the agent versus 52.2% under the historical synthetic policy.
 
 These numbers should be interpreted with discipline. They establish internal behavior of the simulation, not external performance. The useful result is the mechanism: the agent's price premium relative to the borrower-only optimizer moves with bank-state pressure. Two economically identical borrowers can therefore receive different quotes because the marginal balance-sheet cost of their loans differs at the decision date.
 
 That is the feature, not a bug. The bug would be hiding the mechanism and calling it artificial intelligence.
 
 ## 7. Robustness, governance and failure modes
+
+A new seed-sensitivity experiment using five prespecified seeds (42-46), with 30,000 applications per seed, yields a mean uplift of 11.3% (range 7.9%-14.4%) relative to the risk-and-demand-only optimizer. This checks random-seed sensitivity under the same synthetic DGP, not robustness to alternative economic assumptions.
+
+| Seed | PD ROC AUC | EV uplift versus risk and demand |
+|---|---:|---:|
+| 42 | 0.827923 | 7.922436% |
+| 43 | 0.770651 | 11.559742% |
+| 44 | 0.802052 | 12.118685% |
+| 45 | 0.801232 | 10.437635% |
+| 46 | 0.722241 | 14.419902% |
+
+All five runs, their policy-level outputs, environment versions and source hashes are retained in `results/seed_sensitivity`. The prior public abstract reported a five-seed mean of 9.8% with a 7.5%-12.2% range, but its underlying five runs were not in the repository. This revision replaces that unsupported summary with the explicit experiment above; it does not claim to reconstruct the original unspecified seeds.
+
 
 A credible pricing system needs more than a high objective value. At minimum, robustness analysis should vary demand elasticity, risk calibration, funding volatility, state-penalty coefficients, price-grid resolution and the correlation between borrower risk and willingness to pay.
 
@@ -131,4 +144,9 @@ Phillips, R. L. (2020). Pricing Credit Products. In Pricing and Revenue Optimiza
 
 Basel Committee on Banking Supervision. Basel Framework. Bank for International Settlements. Used as conceptual background for capital and liquidity constraints; the reference implementation does not reproduce regulatory formulas.
 
-Repository note: all empirical-looking values in this paper are generated by the synthetic DGP distributed with the code and can be reproduced with seed 42.
+Repository note: the reference result uses seed 42; the seed-sensitivity experiment uses seeds 42, 43, 44, 45 and 46. Run `make experiment`, `make sensitivity` and `make test`. All numerical findings concern synthetic data.
+
+## AI assistance
+
+Generative AI assisted with implementation, verification, revision and document preparation. Numerical results were calculated by the executable Python experiment. The author is responsible for the manuscript and its interpretations.
+

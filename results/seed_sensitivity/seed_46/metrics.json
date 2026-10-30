@@ -1,0 +1,21 @@
+{
+  "seed": 46,
+  "n_total": 30000,
+  "n_train": 24050,
+  "n_test": 5950,
+  "pd_auc": 0.722240990990991,
+  "historical_mean_rate": 0.16085055761055048,
+  "risk_only_mean_rate": 0.16437268907563032,
+  "agent_mean_rate": 0.17418529411764716,
+  "historical_total_ev": 763.1076725188886,
+  "risk_only_total_ev": 1134.3701144821746,
+  "agent_total_ev": 1297.9451706772018,
+  "agent_vs_historical_ev_pct": 70.08676723075074,
+  "agent_vs_risk_only_ev_pct": 14.41990176810124,
+  "historical_acceptance": 0.5170748158189564,
+  "agent_acceptance": 0.2647930437145237,
+  "agent_no_offer_share": 0.0,
+  "risk_only_no_offer_share": 0.0,
+  "agent_vs_historical_ev_delta": 534.8374981583131,
+  "risk_only_acceptance": 0.43953171431406685
+}

@@ -2,6 +2,8 @@
 
 **State-dependent pricing of corporate loans under borrower risk, relationship history and bank balance-sheet constraints**
 
+**Dmitry Kazakov · NEIMARK University, Nizhny Novgorod, Russia · software revision 0.3.1**
+
 A credit model asks: *how risky is this borrower?*  
 A pricing desk has a nastier question: *given the borrower, the relationship, today's funding curve, and the bank's current balance sheet, what price makes this loan worth doing?*
 
@@ -50,9 +52,16 @@ modeling alone. Both percentages are derived from the same reference run in
 
 Publication text is in [`paper/manuscript.md`](paper/manuscript.md), with matching
 submission fields in [`paper/SSRN_SUBMISSION_NOTES.md`](paper/SSRN_SUBMISSION_NOTES.md).
-The committed artifacts document a single `seed=42` run; they do not reproduce a
-multi-seed robustness study. The public paper record is
+The seed-42 reference run is supplemented by a fully recorded five-seed experiment
+(seeds 42-46): mean uplift **11.3%**, range **7.9%-14.4%**, against the risk/demand
+benchmark. [Per-seed results](results/seed_sensitivity/summary.json) and
+[verification and correction history](docs/REPRODUCIBILITY.md) explain the scope.
+Run `make sensitivity` to reproduce all five runs. This checks random-seed
+sensitivity, not alternative economic assumptions or real-bank performance. The public paper record is
 [SSRN 7427102](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7427102).
+
+The evaluation uses structural acceptance probabilities with a common **estimated PD**.
+No offer is encoded as rate zero and has zero acceptance and zero economic value.
 
 ## Economic objective
 
@@ -84,3 +93,4 @@ The project treats loan pricing as a joint **borrower–relationship–bank-stat
 ## License
 
 MIT for code. Please cite the accompanying working paper if you use the framework or experimental design.
+

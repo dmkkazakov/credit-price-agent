@@ -1,4 +1,5 @@
 {
+  "seed": 42,
   "n_total": 30000,
   "n_train": 24117,
   "n_test": 5883,
@@ -13,8 +14,8 @@
   "agent_vs_risk_only_ev_pct": 7.922436015885048,
   "historical_acceptance": 0.5222985066004983,
   "agent_acceptance": 0.24247711699048335,
-  "risk_only_acceptance": 0.41370046780950304,
   "agent_no_offer_share": 0.0,
   "risk_only_no_offer_share": 0.0,
-  "agent_vs_historical_ev_delta": 512.9322862974573
+  "agent_vs_historical_ev_delta": 512.9322862974573,
+  "risk_only_acceptance": 0.41370046780950304
 }

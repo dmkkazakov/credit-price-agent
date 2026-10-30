@@ -4,10 +4,10 @@
 CreditPrice Agent: State-Dependent Corporate Loan Pricing under Borrower Risk, Relationship History, and Dynamic Balance-Sheet Constraints
 
 **Author**  
-Dmitry Kazakov — Independent Researcher
+Dmitry Kazakov — NEIMARK University, Nizhny Novgorod, Russia
 
 **Abstract**  
-Loan pricing is often modeled as a borrower-level problem: estimate credit risk, add funding and capital costs, and choose a margin. This paper studies a different formulation. The economically relevant price of a corporate loan depends not only on the borrower but also on the lender's contemporaneous state. We introduce CreditPrice Agent, a transparent research framework in which the pricing policy conditions jointly on borrower risk, relationship history, price acceptance, market funding, and dynamic balance-sheet pressure. A structural synthetic data-generating process makes the counterfactual pricing problem observable and reproducible without using confidential bank data. In a reference simulation of 30,000 applications, the state-dependent policy changes quoted prices relative to a risk-and-demand-only optimizer and increases simulated total economic value by 7.9% relative to the risk-and-demand-only optimizer under the known data-generating process. Relative to the historical synthetic policy, the simulated EV improvement is 70.3%. These figures are simulation results, not empirical claims about any institution. The main contribution is conceptual and operational: corporate loan pricing is represented as a borrower-relationship-bank-state decision rather than a static markup over expected loss.
+We study individualized corporate-loan pricing when the lender's own balance sheet is part of the decision state. The pricing policy conditions jointly on borrower fundamentals, relationship history, estimated price response, market funding and capital, liquidity and sector-concentration pressure. A transparent implementation separates risk estimation, demand estimation and constrained price search. A fully disclosed synthetic data-generating process contains 30,000 applications over 60 monthly states per run. In the seed-42 out-of-time experiment, the PD model achieves ROC AUC 0.828. Using structural acceptance probabilities and a common estimated PD, the state-dependent policy raises simulated economic value by 7.9% relative to a risk-and-demand optimizer and by 70.3% relative to the historical synthetic policy. A new seed-sensitivity experiment using five prespecified seeds (42-46), with 30,000 applications per seed, yields a mean uplift of 11.3% (range 7.9%-14.4%) relative to the risk-and-demand-only optimizer. This checks random-seed sensitivity under the same synthetic DGP, not robustness to alternative economic assumptions. These are simulation results, not estimated gains at a real institution. The contribution is a reproducible formulation of pricing as a borrower-relationship-bank-state decision with explicit limits on what the experiment establishes.
 
 **Keywords**  
 Corporate lending; loan pricing; risk-based pricing; price elasticity; balance-sheet optimization; machine learning; decision systems
@@ -23,8 +23,8 @@ G21; G32; C61; C63
 - The paper should be presented as a working paper / research prototype.
 - Public source repository: https://github.com/dmkkazakov/credit-price-agent.
 - Public paper record: https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7427102.
-- The committed numerical artifacts support the seed=42 reference run only. Do not infer a multi-seed robustness study from this package.
-- Verify any employer/affiliation and conflict-of-interest wording before submission.
+- The reference run uses seed=42; the new documented seed-sensitivity series uses seeds 42-46. All five result sets are committed.
+- Current academic affiliation: NEIMARK University, Nizhny Novgorod, Russia. Institutional affiliation does not imply university funding or endorsement.
 
 ## Suggested SSRN description
 
@@ -42,3 +42,8 @@ The abstract in this submission-notes file previously retained obsolete values
 It is now copied from `paper/manuscript.md`: +7.9% versus the risk-and-demand
 optimizer and +70.3% versus the deliberately imperfect historical synthetic
 policy. This correction does not change the reference data or the computation.
+
+
+## Revision on 30 October 2026
+
+The SSRN record 7427102 must receive this revised abstract and the matching revised PDF. A local/GitHub update does not update SSRN. Replace the previously reported 9.8% five-seed summary with the measured 11.3% (7.9%-14.4%) series. Existing DOI and original written date remain unchanged.

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "credit-price-agent"
-version = "0.1.0"
+version = "0.3.1"
 description = "State-dependent corporate loan pricing under borrower risk, relationship history and bank balance-sheet constraints."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -22,3 +22,4 @@ dev = ["pytest>=7.4"]
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
+

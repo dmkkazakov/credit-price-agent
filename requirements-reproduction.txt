@@ -1,0 +1,4 @@
+# Core experiment environment; Python 3.12.14 was used for the recorded runs.
+numpy==2.3.5
+pandas==2.2.3
+scikit-learn==1.8.0

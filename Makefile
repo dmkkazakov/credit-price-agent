@@ -5,4 +5,8 @@ experiment:
 	PYTHONPATH=src python scripts/run_experiment.py
 
 test:
-	PYTHONPATH=src pytest -q
+	PYTHONPATH=src python -m unittest discover -s tests -v
+
+
+sensitivity:
+	PYTHONPATH=src python scripts/run_seed_sensitivity.py
